@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:business_processor/Models/info_model.dart';
+import 'package:business_processor/Models/location_model.dart';
+
 class Client {
   int id;
   String info;
@@ -26,6 +29,11 @@ class Client {
     map['locations'] = locations;
       return map;
     }
+
+    String get name => infoFromJson(info).name;
+    String get company => infoFromJson(info).company;
+    List<Location> get locationList => listOfLocFromJson(locations);
+
 }
 
 Client clientFromJson(String str) {

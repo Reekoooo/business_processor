@@ -2,6 +2,7 @@
 
 
 
+import 'package:business_processor/Models/client_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -13,10 +14,8 @@ class DatabaseHelper {
   final String dbName = 'mainDB';
   final String maintTable = 'mainTable';
   final String columnId = 'id';
-  final String columnName = 'name';
-  final String columnCompany = 'company';
-  final String columnSignature = 'signature';
-  final String columnReliability = 'reliability';
+  final String columnInfo = 'info';
+  final String columnLocation = 'location';
 
   static Database _db;
 
@@ -37,7 +36,7 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE $maintTable($columnId INTEGER PRIMARY KEY, $columnName TEXT, $columnCompany TEXT, $columnSignature TEXT, $columnReliability INTEGER)');
+        'CREATE TABLE $maintTable($columnId INTEGER PRIMARY KEY, $columnInfo TEXT, $columnLocation TEXT)');
   }
 
   Future<int> saveClient(Client client) async {
@@ -50,7 +49,7 @@ class DatabaseHelper {
    List<Client> items = [];
     var dbClient = await db;
     await dbClient.query(maintTable, columns: [
-      columnId,columnName,columnCompany,columnSignature,columnReliability]).
+      columnId,columnInfo,columnLocation]).
       then((client) {client.forEach((client) {items.add(Client.fromMap(client));
       });
     });
@@ -68,10 +67,8 @@ class DatabaseHelper {
     List<Map> result = await dbClient.query(maintTable,
         columns: [
           columnId,
-          columnName,
-          columnCompany,
-          columnSignature,
-          columnReliability,
+          columnInfo,
+          columnLocation,
         ],
         where: '$columnId = ?',
         whereArgs: [id]);
