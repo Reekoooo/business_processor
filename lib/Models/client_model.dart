@@ -34,6 +34,9 @@ class Client {
     String get company => infoFromJson(info).company;
     List<Location> get locationList => listOfLocFromJson(locations);
 
+    void setInfo(String _name, String _company) => info=infoToJson(Info(company: _company, name: _name ));
+    
+
 }
 
 Client clientFromJson(String str) {

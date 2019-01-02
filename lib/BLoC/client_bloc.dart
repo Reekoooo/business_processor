@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:business_processor/BLoC/bloc_provider.dart';
 import 'package:business_processor/DB/database.dart';
 import 'package:business_processor/Models/client_model.dart';

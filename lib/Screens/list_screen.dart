@@ -55,8 +55,4 @@ class _ListScreen extends State<ListScreen> {
                       BlocProvider(bloc: ClientBloc(), child: SaveClient())))),
     );
   }
-
-
-
-
 }

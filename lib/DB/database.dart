@@ -15,7 +15,7 @@ class DatabaseHelper {
   final String maintTable = 'mainTable';
   final String columnId = 'id';
   final String columnInfo = 'info';
-  final String columnLocation = 'location';
+  final String columnLocations = 'locations';
 
   static Database _db;
 
@@ -36,7 +36,7 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE $maintTable($columnId INTEGER PRIMARY KEY, $columnInfo TEXT, $columnLocation TEXT)');
+        'CREATE TABLE $maintTable($columnId INTEGER PRIMARY KEY, $columnInfo TEXT, $columnLocations TEXT)');
   }
 
   Future<int> saveClient(Client client) async {
@@ -49,7 +49,7 @@ class DatabaseHelper {
    List<Client> items = [];
     var dbClient = await db;
     await dbClient.query(maintTable, columns: [
-      columnId,columnInfo,columnLocation]).
+      columnId,columnInfo,columnLocations]).
       then((client) {client.forEach((client) {items.add(Client.fromMap(client));
       });
     });
@@ -68,7 +68,7 @@ class DatabaseHelper {
         columns: [
           columnId,
           columnInfo,
-          columnLocation,
+          columnLocations,
         ],
         where: '$columnId = ?',
         whereArgs: [id]);
