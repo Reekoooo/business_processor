@@ -22,7 +22,7 @@ class Client {
         if (id != null) {
       map['id'] = id;
     }
-     map['info'] = info;
+    map['info'] = info;
     map['locations'] = locations;
       return map;
     }
