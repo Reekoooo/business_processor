@@ -36,13 +36,14 @@ class SaveClient extends StatelessWidget {
                               info: infoToJson(Info(
                                   name: _nameController.text,
                                   company: _companyController.text)),
-                              locations: listOfLocToJson([])),
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BlocProvider(
-                                      bloc: ClientBloc(),
-                                      child: ListScreen()))));
+                              locations: listOfLocToJson([])));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BlocProvider(
+                                  bloc: ClientBloc(),
+                                  child: ListScreen())));
+
                     }),
                 RaisedButton(
                   child: Icon(Icons.backspace),

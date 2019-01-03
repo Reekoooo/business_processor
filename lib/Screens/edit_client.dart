@@ -3,8 +3,8 @@ import 'package:business_processor/BLoC/client_bloc.dart';
 import 'package:business_processor/Models/client_model.dart';
 import 'package:business_processor/Screens/list_screen.dart';
 import 'package:business_processor/Models/info_model.dart';
+import 'package:business_processor/Models/location_model.dart';
 import 'package:flutter/material.dart';
-
 
 class EditClient extends StatelessWidget {
   final Client client;
@@ -13,6 +13,7 @@ class EditClient extends StatelessWidget {
   final TextEditingController _companyController = new TextEditingController();
 
   EditClient({this.client});
+
   @override
   Widget build(BuildContext context) {
     final ClientBloc bloc = BlocProvider.of<ClientBloc>(context);
@@ -35,28 +36,33 @@ class EditClient extends StatelessWidget {
                     child: Icon(Icons.check),
                     onPressed: () {
                       bloc.sinkUp.add(Client(
-                        id: client.id,
-                        info: infoToJson(Info(
-                          name: _nameController.text??client.name,
-                          company: _companyController.text??client.company)),
-                        locations: client.locations
-                      ),
+                          id: client.id,
+                          info: infoToJson(Info(
+                              name: _nameController.text ?? client.name,
+                              company:
+                              _companyController.text ?? client.company)),
+                          locations: client.locations));
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                  bloc: ClientBloc(), child: ListScreen()))));}
-                    ),
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider(
+                            bloc: ClientBloc(),
+                            child: ListScreen(),
+                          ),
+                        ),
+                      );
+                    }),
                 RaisedButton(
-                  child: Icon(Icons.backspace),
-                  onPressed: () => Navigator.push(
+                    child: Icon(Icons.backspace),
+                    onPressed: (() => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => BlocProvider(
-                              bloc: ClientBloc(), child: ListScreen()))),
-                )
+                        builder: (context) => BlocProvider(
+                            bloc: ClientBloc(), child: ListScreen()),
+                      ),
+                    )))
               ],
-            )
+            ),
           ],
         ),
       ),
