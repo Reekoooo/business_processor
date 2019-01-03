@@ -22,9 +22,9 @@ class ClientBloc implements BlocBase {
 
   ClientBloc(){
     _upList();
-    _saveClientCtrl.stream.listen(_saveClient);
-    _delClientCtrl.stream.listen(_delClient);
-    _upClientCtrl.stream.listen(_upClient);
+    _saveClientCtrl.stream.listen(saveClient);
+    _delClientCtrl.stream.listen(delClient);
+    _upClientCtrl.stream.listen(upClient);
   }
 
   @override
@@ -35,24 +35,21 @@ class ClientBloc implements BlocBase {
     _upClientCtrl.close();
   }
  
-  void _saveClient(Client client) {
+  void saveClient(Client client) {
     _db.saveClient(client);
     _upList();
   }
 
-  void _delClient(Client client) {
+  void delClient(Client client) {
     _db.deleteClient(client);
     _upList();
   }
 
-  void _upClient(Client client) {
+  void upClient(Client client) {
     _db.updateClient(client);
     _upList();
   }
 
-  void _upList() async {
-    List<Client> _list = await _db.getClientsList();
-    sinkList.add(_list);
-  }
+  void _upList() async => await _db.getClientsList().then((list) {sinkList.add(list);});
 
 }

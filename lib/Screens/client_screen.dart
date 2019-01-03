@@ -49,7 +49,11 @@ class ClientScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => BlocProvider(
-                                  bloc: ClientBloc(), child: ListScreen())));
+                                  bloc: ClientBloc(), 
+                                  child: ListScreen()
+                                  )
+                                  )
+                                  );
                     })
               ],
             ),
