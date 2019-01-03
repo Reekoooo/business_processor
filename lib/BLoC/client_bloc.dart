@@ -8,7 +8,7 @@ class ClientBloc implements BlocBase {
   final DatabaseHelper _db = DatabaseHelper();
 
   final StreamController<List<Client>> _listController = StreamController<List<Client>>();
-  Sink<List<Client>> get  sinkList => _listController.sink;
+  Sink<List<Client>> get sinkList => _listController.sink;
   Stream<List<Client>> get streamList => _listController.stream;
 
   final StreamController<Client> _saveClientCtrl = StreamController<Client>();

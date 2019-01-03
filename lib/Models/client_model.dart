@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:business_processor/Models/info_model.dart';
 import 'package:business_processor/Models/location_model.dart';
 
@@ -35,8 +34,7 @@ class Client {
     List<Location> get locationList => listOfLocFromJson(locations);
 
     void setInfo(String _name, String _company) => info=infoToJson(Info(company: _company, name: _name ));
-    
-
+  
 }
 
 Client clientFromJson(String str) {

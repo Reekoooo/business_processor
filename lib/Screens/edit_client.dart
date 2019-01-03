@@ -3,7 +3,6 @@ import 'package:business_processor/BLoC/client_bloc.dart';
 import 'package:business_processor/Models/client_model.dart';
 import 'package:business_processor/Screens/list_screen.dart';
 import 'package:business_processor/Models/info_model.dart';
-import 'package:business_processor/Models/location_model.dart';
 import 'package:flutter/material.dart';
 
 
